@@ -1,0 +1,103 @@
+﻿@model WeatherForecast.Models.PokemonDetailViewModel
+@{
+    ViewBag.Title = "Pokemon Detail";
+
+}
+
+<br />
+<h1 class="text-2xl text-orange-600 font-bold px-4 text-center"> Pokemon Detail</h1>
+<br />
+<div class="container">
+    <div class="card shadow mt-4">
+        @*  <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div> *@
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="displayinfo" width="100%" cellspacing="0">
+                    @* <thead>
+                    <tr>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Detail</th>
+                    </tr>
+                    </thead> *@
+                    <tbody>
+                        <tr>
+                            <td colspan="2" >
+                                <!-- Assuming that Model contains the PokemonDetailViewModel with sprite URLs -->
+                                <img src="@Model.sprites.front_default" alt="Front Sprite" class="mx-auto" style="width: 200px; height: auto;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="30%">
+                                <label>Name :</label>
+
+                            </td>
+                            <td class="text-capitalize">
+                                @Model.name
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Height (m) :</label>
+
+                            </td>
+                            <td>
+                                @Model.height
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Weight (kg) :</label>
+
+                            </td>
+                            <td>
+                                @Model.weight
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Base Experience :</label>
+
+                            </td>
+                            <td>
+                                @Model.base_experience
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Base Happiness :</label>
+
+                            </td>
+                            <td>
+                                @Model.PokemonSpeciesViewModel.base_happiness
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Capture Rate :</label>
+
+                            </td>
+                            <td>
+                                @Model.PokemonSpeciesViewModel.capture_rate
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Habitat :</label>
+
+                            </td>
+                            <td class="text-capitalize">
+                                @Model.PokemonSpeciesViewModel.habitat.name
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <a href="@Url.Action("PokemonTwo", "Home")" class="bg-bermuda hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right">Kembali</a>
+        </div>
+    </div>
+</div>
+

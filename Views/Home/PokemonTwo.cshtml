@@ -1,0 +1,64 @@
+﻿@model List<WeatherForecast.Models.PokemonViewModel>
+@{
+    ViewBag.Title = "Pokemon Listing";
+
+}
+<br />
+<h1 class="text-2xl text-orange-600 font-bold px-4 text-center"> Pokemon Listing</h1>
+<br />
+<div class="container">
+    <strong class="px-4"> <button id="getPokBtn" class="bg-bermuda hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">Display Pokemon</button></strong>
+
+    <div class="card shadow mt-4" id="main" style="display:none;">
+       @*  <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div> *@
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="displayinfo" width="100%" cellspacing="0" >
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var no = 1;
+                        }
+                        @foreach (var m in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@no</td>
+                                <td class="text-capitalize text-center">@m.Name</td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("getPokemonDetail", "Home", new { pokemonName = m.Name })" target="_blank" class="text-blue-600"><i class="fas fa-eye"></i></a>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+@section scripts{
+    <script>
+       
+        $("#getPokBtn").click(function () {
+            $("#main").show();
+
+            $('#displayinfo').DataTable();
+        })
+
+        //Datatable
+       
+
+
+    </script>
+}

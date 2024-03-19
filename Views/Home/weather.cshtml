@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "Weather";
+
+
+}
+<br />
+<h1> Search City and Get Weather Forecast</h1>
+
+<div>
+    <strong>City Name : <input type="text" id="city" /></strong>
+    <br />
+    <br />
+    <button id="btnSubmit">Get Weather Forecast</button>
+</div>
+
+<div>
+    <h2>Weather Forecast</h2>
+    <table id="displayinfo">
+        <tr>
+            <td><img id="imgWeatherIconUrl" src="" title="Weather Icon" /></td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Description : </strong>
+                <span id="dDescr"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> City : </strong>
+                <span id="dCity"></span>
+                <span id="dCountry"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Latitude : </strong>
+                <span id="dLat"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Longitude : </strong>
+                <span id="dLong"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Humidity : </strong>
+                <span id="dHumidity"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Temperature (Feel Like) : </strong>
+                <span id="dTempLike"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Temperature : </strong>
+                <span id="dTemp"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Temperature (Min) : </strong>
+                <span id="dTempMin"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong> Temperature (Max) : </strong>
+                <span id="dTempMax"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br />
+<div>
+    <strong>Pokemon : <input type="text" id="pokemon" /></strong>
+    <br />
+    <br />
+    <button id="getPokBtn">Display Pokemon</button>
+</div>
+
+@section scripts{
+    <script>
+        $("#btnSubmit").click(function () {
+            //get value of city input
+            var city = $("#city").val();
+            var url = "@Url.Action("GetWeatherDetail", "Home")" + "?City=" + city; //parameter City--display info based on city input
+
+            if (city != null) {
+                $.ajax({
+
+                    url: url,
+                    type: 'POST',
+                    // data: {"city": city},
+                    success: function (rsltval) {
+                       var data = JSON.parse(rsltval);
+
+                        var cityName = data.name;
+                        var country = data.sys.country
+                        var icon = data.weather[0].icon;
+                        var latitude = data.coord.lat;
+                        var longitude = data.coord.lon;
+                        var humidity = data.main.humidity;
+                        var temp = data.main.temp;
+                        var temp_max = data.main.temp_max;
+                        var temp_min = data.main.temp_min;
+                        var description = data.weather[0].description;
+
+                        var timezone = data.timezone;
+                        // Example timezone offset in seconds (+02:00)
+                       
+
+                        // Convert timezone offset from seconds to milliseconds
+                        var timezoneOffsetMilliseconds = timezone * 1000;
+
+                        // Create a Date object representing the current time with the specified timezone offset
+                        var currentTimeWithOffset = new Date(Date.now() + timezoneOffsetMilliseconds);
+
+                        // Get the current time components (hours, minutes, seconds)
+                        var hours = currentTimeWithOffset.getHours();
+                        var minutes = currentTimeWithOffset.getMinutes();
+                        var seconds = currentTimeWithOffset.getSeconds();
+
+                        // Format the time as a string (HH:MM:SS)
+                        var formattedTime = `${hours}:${minutes}:${seconds}`;
+
+                        console.log("Current time (with timezone offset):", formattedTime);
+
+                        //bind to view
+                        $("#dCity").html(cityName);
+                        $("#dCountry").text(country);
+                        $("#dLat").text(latitude);
+                        $("#dLong").text(longitude);
+                        $("#dDescr").text(description);
+                        $("#dHumidity").text(humidity);
+                        $("#dTemp").text(temp);
+                        $("#dTempMin").text(temp_min);
+                        $("#dTempMax").text(temp_max);
+                        $("#imgWeatherIconUrl").attr("src", "https://openweathermap.org/img/w/"+icon+".png");
+
+                        console.log(data);
+                        
+                    }
+                })
+            };
+
+            
+        })
+
+        $("#getPokBtn").click(function () {
+            //get value of city input
+            var city = $("#city").val();
+            var urlPokemon = "@Url.Action("getPokemon", "Home")";
+
+            $.ajax({
+
+                url: urlPokemon,
+                type: 'POST',
+                // data: {"city": city},
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+
+                    console.log(data);
+
+                }
+            })
+
+        })
+
+    </script>
+}

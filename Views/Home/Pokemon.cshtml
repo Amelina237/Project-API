@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "POKEMON";
+
+}
+<br />
+<h1 class="text-2xl text-orange-600 font-bold px-4"> Pokemon Information</h1>
+<br />
+<div>
+    <strong class="px-4"> <button id="getPokBtn" class="bg-bermuda hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Display Pokemon</button></strong> 
+</div>
+<br />
+<div>
+    <table id="displayinfo" style="display:none" class="table-bordered px-4">
+       @*  <thead>
+            <tr></tr>
+        </thead> *@
+        <tbody id="pokemonTableBody" class="text-center" ></tbody>
+    </table>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $("#getPokBtn").click(function () {
+            //get value of city input
+            var pokemonName = $("#pokemonName").val();
+            var urlPokemon = "@Url.Action("getPokemon", "Home")";
+            var urlPokemon2 = "@Url.Action("getPokemon", "Home")" + "?pokemonName=" + pokemonName;
+
+            // $("#displayinfo").show();
+            $.ajax({
+
+                url: urlPokemon,
+                type: 'POST',
+                // data: {"city": city},
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    
+                    console.log(data);
+                    // var pokemonList = data.results;
+
+                    // Get the table element
+                    var table = document.getElementById("displayinfo");
+
+                    // Create the <thead> section 
+                    var thead = document.createElement("thead");
+
+                    var theadRow = document.createElement("tr");
+
+                    // Create column headers
+                    var nameHeader = document.createElement("th");
+                    nameHeader.textContent = "Name";        //returns the text content of the specified node and all its descendants
+                    theadRow.appendChild(nameHeader);       //adds a node to the end of the list of children of a specified parent node.
+                    thead.appendChild(theadRow);
+
+                    var detailHeader = document.createElement("th");
+                    detailHeader.textContent = "Detail";        //returns the text content of the specified node and all its descendants
+                    theadRow.appendChild(detailHeader);       //adds a node to the end of the list of children of a specified parent node.
+                    thead.appendChild(theadRow);
+
+                    // Clear existing table body
+                    var tableBody = document.getElementById("pokemonTableBody");
+                    tableBody.innerHTML = "";
+
+                    // Append the <thead> section to the table
+                    table.appendChild(thead);
+
+                   
+
+                    // Populate table body with data from the AJAX response
+                    data.forEach(function (pokemon) {
+                        var name = pokemon.Name
+                        var row = document.createElement("tr");
+
+                        // Create a table data cell for the name
+                        var nameCell = document.createElement("td");
+                        nameCell.textContent = pokemon.Name;
+                        row.appendChild(nameCell);
+
+                        // Create a table data cell for the detail
+                        var detailCell = document.createElement("td");
+
+                        // Create an anchor element (<a>) for the URL
+                        var link = document.createElement("a");
+                        //link.href = pokemon.Url;
+                        link.href = "@Url.Action("getPokemonDetail", "Home")" + "?pokemonName=" + pokemon.Name;
+                        link.textContent = "Click to see detail";
+                        link.target = "_blank";
+
+                        detailCell.appendChild(link);
+                        row.appendChild(detailCell);
+
+                        // Append the row to the table body
+                        tableBody.appendChild(row);
+                    });
+
+                    // Display the table if it was previously hidden
+                    table.style.display = "block";
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            })
+
+        })
+
+        function getPokemonDetail(pokemonName) {
+            var urlPokemonDetail = "@Url.Action("getPokemonDetail", "Home")" + "?pokemonName=" + encodeURIComponent(pokemonName);
+
+            $.ajax({
+                url: urlPokemonDetail,
+                type: 'GET',
+                success: function (response) {
+                    // Process the response data here
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+    </script>
+}
