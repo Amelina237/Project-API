@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "project1API_Weather": {
+    "ProjectAPI": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -1,4 +1,4 @@
-namespace project1API_Weather.Models
+namespace ProjectAPI.Models
 {
     public class ErrorViewModel
     {

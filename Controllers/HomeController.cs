@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
-using project1API_Weather.Models;
+using ProjectAPI.Models;
 using System.Diagnostics;
 using System.Net;
-using WeatherForecast.Models;
 using System;
 using System.Text.Json;
 
 
-namespace project1API_Weather.Controllers
+namespace ProjectAPI.Controllers
 {
     public class HomeController : Controller
     {
