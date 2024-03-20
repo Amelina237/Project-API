@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System;
 using System.Text.Json;
+using System.Reflection;
 
 
 namespace ProjectAPI.Controllers
@@ -35,6 +36,7 @@ namespace ProjectAPI.Controllers
             string pokemon = getPokemon();
             string pokemonType = getPokemonType();
             string pokemonAbility = getPokemonAbility();
+           
 
             RootObject rootObject = JsonSerializer.Deserialize<RootObject>(pokemon);
 
@@ -44,17 +46,35 @@ namespace ProjectAPI.Controllers
                 Url = r.url,
             }).ToList();
 
+          //PokemonViewModel pokemonViewModel = rootObject.results.Select(r => new PokemonViewModel
+          //{
+          //    Name = r.name,
+          //    Url = r.url,
+          //}).FirstOrDefault();
+
+          //  string name = pokemonViewModel.Name;
+
+          //  string pokemonMoves = getPokemonDetailJson("charmander");
+
             int countNo = rootObject.count;
 
             PokemonTypeViewModel PokemonType  = JsonSerializer.Deserialize<PokemonTypeViewModel>(pokemonType);
             PokemonAbilityViewModel PokemonAbility = JsonSerializer.Deserialize<PokemonAbilityViewModel>(pokemonAbility);
+
+            //PokemonDetailViewModel PokemonMoves = JsonSerializer.Deserialize<PokemonDetailViewModel>(pokemonMoves);
+
+            //List<Moves> moves = PokemonMoves.moves.Select(r => new Moves
+            //{
+            //   move = r.move,
+            //}).ToList();
+
+            //ViewBag.Moves = moves.Count;
             // Set the total number of Pokémon in the ViewBag
             ViewBag.CurrentPokemonCount = pokemonViewModels.Count;
             ViewBag.TotalPokemon = countNo;
             ViewBag.ListName = pokemonViewModels;
             ViewBag.TotalTypePokemon = PokemonType.count;
             ViewBag.TotalAbilityPokemon = PokemonAbility.count;
-
             return View();
         }
         public IActionResult PokemonTwo()
@@ -82,7 +102,14 @@ namespace ProjectAPI.Controllers
             
             PokemonSpeciesViewModel speciesModel = JsonSerializer.Deserialize<PokemonSpeciesViewModel>(pokemonSpecies);
             model.PokemonSpeciesViewModel = speciesModel;
-            
+
+            List<Moves> moves = model.moves.Select(r => new Moves
+            {
+               move = r.move,
+            }).ToList();
+
+            ViewBag.Moves = moves.Count;
+
             return View(model);
         }
 
@@ -90,7 +117,6 @@ namespace ProjectAPI.Controllers
         #region Get Json Data
         public string getPokemonSpeciesJson(string pokemonName)
         {
-
 
             string url1 = $"https://pokeapi.co/api/v2/pokemon-species/{pokemonName}";
 

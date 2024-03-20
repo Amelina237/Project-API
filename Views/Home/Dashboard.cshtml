@@ -53,7 +53,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Total Pokemon Ability 
+                            Total Pokemon Ability
                         </div>
                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@ViewBag.TotalAbilityPokemon</div>
                     </div>
@@ -84,7 +84,7 @@
     @* Test chart.js here *@
 
 </div>
-@* <canvas id="myChart"></canvas>
+<canvas id="myChart"></canvas>
 
 @section scripts{
     <script>
@@ -98,39 +98,67 @@
             <text>"@label.Name", </text>
         }],
                 datasets: [{
-                    label: 'Total Pokemon',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Total Abilty of Pokemon',
+                    data: [86, 83, 96, 105, 103, 131, 106, 101, 120, 5, 5, 86, 4, 5, 82, 64, 60, 63, 82, 84],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 0, 0, 0.2)', //(Red)
+                        'rgba(0, 255, 0, 0.2)', //(Green)
+                        'rgba(0, 0, 255, 0.2)', //(Blue)
+                        'rgba(255, 255, 0, 0.2)', //(Yellow)
+                        'rgba(255, 0, 255, 0.2)', //(Magenta)
+                        'rgba(0, 255, 255, 0.2)', //(Cyan)
+                        'rgba(128, 0, 0, 0.2)', //aroon)
+                        'rgba(0, 128, 0, 0.2)', //ark Green)
+                        'rgba(0, 0, 128, 0.2)', //avy)
+                        'rgba(128, 128, 0, 0.2)',//(Olive)
+                        'rgba(128, 0, 128, 0.2)',//(Purple)
+                        'rgba(0, 128, 128, 0.2)',//(Teal)
+                        'rgba(128, 128, 128, 0.2)', //(Gray)
+                        'rgba(192, 192, 192, 0.2)'//(Silver)
+                                    ],
+        borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0, 1)', //(Red)
+                        'rgba(0, 255, 0, 1)', //(Green)
+                        'rgba(0, 0, 255, 1)', //(Blue)
+                        'rgba(255, 255, 0, 1)', //(Yellow)
+                        'rgba(255, 0, 255, 1)', //(Magenta)
+                        'rgba(0, 255, 255, 1)', //(Cyan)
+                        'rgba(128, 0, 0, 1)', //aroon)
+                        'rgba(0, 128, 0, 1)', //ark Green)
+                        'rgba(0, 0, 128, 1)', //avy)
+                        'rgba(128, 128, 0, 1)',//(Olive)
+                        'rgba(128, 0, 128, 1)',//(Purple)
+                        'rgba(0, 128, 128, 1)',//(Teal)
+                        'rgba(128, 128, 128, 1)', //(Gray)
+                        'rgba(192, 192, 192, 1)'//(Silver)
+        ],
+            borderWidth: 1
+                                }]
+                            },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
                 }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            },
-            height: 50
-        })
+            }
+        },
+        height: 50
+                        })
 
 
     </script>
-} *@
+}
