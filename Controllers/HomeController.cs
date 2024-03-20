@@ -27,7 +27,7 @@ namespace ProjectAPI.Controllers
         {
             return View();
         }
-        public IActionResult Pokemon()
+        public IActionResult PokemonUsingAjax()
         {
             return View();
         }
@@ -46,38 +46,20 @@ namespace ProjectAPI.Controllers
                 Url = r.url,
             }).ToList();
 
-          //PokemonViewModel pokemonViewModel = rootObject.results.Select(r => new PokemonViewModel
-          //{
-          //    Name = r.name,
-          //    Url = r.url,
-          //}).FirstOrDefault();
-
-          //  string name = pokemonViewModel.Name;
-
-          //  string pokemonMoves = getPokemonDetailJson("charmander");
-
             int countNo = rootObject.count;
 
             PokemonTypeViewModel PokemonType  = JsonSerializer.Deserialize<PokemonTypeViewModel>(pokemonType);
             PokemonAbilityViewModel PokemonAbility = JsonSerializer.Deserialize<PokemonAbilityViewModel>(pokemonAbility);
 
-            //PokemonDetailViewModel PokemonMoves = JsonSerializer.Deserialize<PokemonDetailViewModel>(pokemonMoves);
-
-            //List<Moves> moves = PokemonMoves.moves.Select(r => new Moves
-            //{
-            //   move = r.move,
-            //}).ToList();
-
-            //ViewBag.Moves = moves.Count;
-            // Set the total number of Pokémon in the ViewBag
             ViewBag.CurrentPokemonCount = pokemonViewModels.Count;
             ViewBag.TotalPokemon = countNo;
             ViewBag.ListName = pokemonViewModels;
             ViewBag.TotalTypePokemon = PokemonType.count;
             ViewBag.TotalAbilityPokemon = PokemonAbility.count;
+
             return View();
         }
-        public IActionResult PokemonTwo()
+        public IActionResult PokemonListing()
         {
             string pokemon = getPokemon();
 
@@ -98,6 +80,7 @@ namespace ProjectAPI.Controllers
             string pokemonJson = getPokemonDetailJson(pokemonName);
             string pokemonSpecies = getPokemonSpeciesJson(pokemonName);
 
+            //deserializer - convert json string to c#
             PokemonDetailViewModel model = JsonSerializer.Deserialize<PokemonDetailViewModel>(pokemonJson);
             
             PokemonSpeciesViewModel speciesModel = JsonSerializer.Deserialize<PokemonSpeciesViewModel>(pokemonSpecies);
@@ -122,8 +105,9 @@ namespace ProjectAPI.Controllers
 
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(url1);   //get the data from website
-                                                             //RootObject rootObject = JsonSerializer.Deserialize<RootObject>(json);
+                //get the data from website
+                string json = client.DownloadString(url1);   
+                                                             
                 return json;
             }
 
@@ -136,20 +120,7 @@ namespace ProjectAPI.Controllers
 
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(url1);   //get the data from website
-                                                             //RootObject rootObject = JsonSerializer.Deserialize<RootObject>(json);
-
-                //List<PokemonViewModel> pokemonViewModels = rootObject.results.Select(r => new PokemonViewModel
-                //{
-                //    Name = r.name,
-                //    Url = r.url,
-                //}).ToList();
-
-                ////Converting OBJECT to JSON String   (return as array)
-                //var jsonstring = JsonSerializer.Serialize(pokemonViewModels);
-
-                //Return JSON string
-
+                string json = client.DownloadString(url1);   
                 return json;
             }
 
@@ -158,74 +129,37 @@ namespace ProjectAPI.Controllers
         {
             string pokemonName;
 
-            string url = $"https://pokeapi.co/api/v2/pokemon/";  //request to API how much data we want to retrieve
+            string url = $"https://pokeapi.co/api/v2/pokemon/";  //offset,limit - request to API how much data we want to retrieve
 
 
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(url);   //get the data from website
-                //Return JSON string.  
+                string json = client.DownloadString(url);  
                 return json;
             }
 
         }
         public string getPokemonType()
         {
-            string url = $"https://pokeapi.co/api/v2/type/";  //request to API how much data we want to retrieve
+            string url = $"https://pokeapi.co/api/v2/type/";  
 
 
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(url);   //get the data from website
-                //Return JSON string.  
+                string json = client.DownloadString(url);   
                 return json;
             }
         }
         public string getPokemonAbility()
         {
-            string url = $"https://pokeapi.co/api/v2/ability/";  //request to API how much data we want to retrieve
+            string url = $"https://pokeapi.co/api/v2/ability/";  
 
 
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(url);   //get the data from website
-                //Return JSON string.  
+                string json = client.DownloadString(url);   
                 return json;
             }
-        }
-        [HttpPost]
-        public String GetWeatherDetail(string City)
-        {
-
-
-            //assign API key get from website
-            string appId = "5626c0c749392da5f423d117f585a5a5";
-
-            //API path with CITY parameter and other parameters.  
-            string url = $"https://api.openweathermap.org/data/2.5/weather?q={City}&appid={appId}";
-            //string url = string.Format(https://api.openweathermap.org/data/2.5/weather?q=City&appid=appId);
-
-            //using (WebClient client = new WebClient())
-            //{
-            //    string json = client.DownloadString(url);   //get the data from website
-
-            //    RootObject rootObject = JsonSerializer.Deserialize<RootObject>(json);
-
-            //   List<PokemonViewModel> pokemonViewModels = rootObject.results.Select(r=>new PokemonViewModel
-            //   {
-            //       Name = r.Name,
-            //       Url = r.Url,
-            //   }).ToList();
-
-            //    //Converting OBJECT to JSON String   
-            //    var jsonstring =  JsonSerializer.Serialize(pokemonViewModels);
-
-            //Return JSON string.  
-            return url;
-
-
-
-
         }
 
         #endregion Get Json Data
