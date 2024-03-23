@@ -4,18 +4,28 @@ This project is a simple web API developed using ASP.NET Core, leveraging Pokém
 
 ## Technology Stack
 
-- **ASP.NET Core** 
+- ASP.Net Core
 
-- **Datatable** 
+- Datatable
 
-- **Chart.js** : Providing interactive dashboards and reports to visualize insights from the data stored in the SQL Server database.
-
+- Chart.js
+  
 ## Screenshot
 
-In these modules, my contributions have included :
+This is the screenshot of the project:
 
-- Users can perform better Verification and Validation tasks, as the new system improves data consistency and includes validation checks, ensuring accurate data input and enabling edit functions.
-- Create a Global Function that retrieves and displays all relevant information based on a License. This function can be reused by other developers as needed
-- Implement a search function across all modules of the system.
+1.Main Page :
 
+![Main Page](https://github.com/Amelina237/Project-API/assets/33069266/ef0a2088-28a9-40fd-a333-fe9ea24a7985)
 
+2.Dashboard :
+
+![Dashboard](https://github.com/Amelina237/Project-API/assets/33069266/3843c250-dc58-494b-976b-8456283a33b7)
+
+3.Pokemon Listing :
+
+![PokemonListing](https://github.com/Amelina237/Project-API/assets/33069266/2788e454-0416-4c10-badd-99570e23cdf4)
+
+4.Pokemon Details :
+
+![PokemonDetails](https://github.com/Amelina237/Project-API/assets/33069266/0e07890f-d11b-4cb5-aa1b-17f8063e87a2)
