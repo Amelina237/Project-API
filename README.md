@@ -16,7 +16,7 @@ This is the screenshot of the project:
 
 1.Main Page :
 
-![Main Page](https://github.com/Amelina237/Project-API/assets/33069266/ef0a2088-28a9-40fd-a333-fe9ea24a7985)
+![Main Page](https://github.com/Amelina237/Project-API/assets/33069266/ffeabdca-1bc7-463d-b6dc-c2d1c95eefb4)
 
 2.Dashboard :
 
