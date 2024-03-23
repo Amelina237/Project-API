@@ -1,6 +1,6 @@
 # Simple Web API
 
-This project is a simple web API developed using ASP.NET Core, leveraging Pokémon data sourced directly from the Pokémon website. It provides functionalities such as displaying listings, offering details of Pokémon, and generating a dashboard by manipulating the data
+This project is a simple web API developed using ASP.NET Core, leveraging Pokemon data sourced directly from the Pokemon website. It provides functionalities such as displaying listings, offering details of Pokemon, and generating a dashboard by manipulating the data
 
 ## Technology Stack
 
