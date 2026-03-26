@@ -92,7 +92,7 @@
     "lodash.merge": "^4.6.2",
     "lru-cache": "^10.2.0",
     "merge2": "^1.4.1",
-    "micromatch": "^4.0.5",
+    "micromatch": "^4.0.8",
     "minimatch": "^9.0.9",
     "minipass": "^7.0.4",
     "ms": "^2.1.2",
