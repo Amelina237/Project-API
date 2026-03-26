@@ -80,7 +80,7 @@
     "isexe": "^2.0.0",
     "jackspeak": "^2.3.6",
     "jiti": "^1.21.0",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "json-buffer": "^3.0.1",
     "json-schema-traverse": "^0.4.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
