@@ -97,7 +97,7 @@
     "minipass": "^7.0.4",
     "ms": "^2.1.2",
     "mz": "^2.7.0",
-    "nanoid": "^3.3.7",
+    "nanoid": "^3.3.11",
     "natural-compare": "^1.4.0",
     "normalize-path": "^3.0.0",
     "object-assign": "^4.1.1",
