@@ -158,7 +158,7 @@
     "wrap-ansi": "^8.1.0",
     "wrap-ansi-cjs": "^7.0.0",
     "wrappy": "^1.0.2",
-    "yaml": "^2.4.1",
+    "yaml": "^2.8.3",
     "yocto-queue": "^0.1.0"
   },
   "devDependencies": {
